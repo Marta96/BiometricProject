@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KeyboardBiometrics
@@ -20,6 +16,9 @@ namespace KeyboardBiometrics
         List<int> errorsCountList = new List<int>();
         Methods methods;
 
+        SqlCommand cmd;
+        SqlConnection con;
+        
         public RegisterForm()
         {
             InitializeComponent();
@@ -30,7 +29,7 @@ namespace KeyboardBiometrics
         private void buttonback_Click(object sender, EventArgs e)
         {
             KeyboardBiometrics keyboardBiometrics = new KeyboardBiometrics();
-            this.Hide();
+            Hide();
             keyboardBiometrics.Show();
         }
 
@@ -38,10 +37,17 @@ namespace KeyboardBiometrics
 
         private void AddRowToDataBase(string login, string pass, double totaltime, double presstime, double seektime, double errors)
         {
-            // KeyboardBiometricsDatabaseDataSet db = new KeyboardBiometricsDatabaseDataSet();
-
-            //Console.WriteLine(db.DataSetName);
-            //KeyboardBiometricsDatabaseConnectionString
+            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Bartosz\Source\Repos\BiometricProject2\KeyboardBiometrics-master\KeyboardBiometrics\KeyboardDatabase.mdf;Integrated Security=True");
+            con.Open();
+            cmd = new SqlCommand("INSERT INTO KeyboardData (nickname, password, total_time, seek_time, press_time, errors_count) " +
+                "VALUES (@nickname, @password, @total_time, @seek_time, @press_time, @errors_count)", con);
+            cmd.Parameters.AddWithValue("@nickname",login);
+            cmd.Parameters.AddWithValue("@password", pass);
+            cmd.Parameters.AddWithValue("@total_time", totaltime);
+            cmd.Parameters.AddWithValue("@seek_time", seektime);
+            cmd.Parameters.AddWithValue("@press_time", presstime);
+            cmd.Parameters.AddWithValue("@errors_count", errors);
+            cmd.ExecuteNonQuery();
         }
 
         private void loginBox_Click(object sender, EventArgs e)
@@ -89,7 +95,7 @@ namespace KeyboardBiometrics
                 Console.WriteLine(averageErrorsCount);
                 AddRowToDataBase(loginBox.Text, pass1Box.Text, averageTotalTime, averagePressTime, averageSeekTime, averageErrorsCount);
                 RegisteredWindow registeredWindow = new RegisteredWindow();
-                this.Hide();
+                Hide();
                 registeredWindow.Show();
             }
 
@@ -109,5 +115,6 @@ namespace KeyboardBiometrics
         {
             methods.KeyUp(e);
         }
+
     }
 }

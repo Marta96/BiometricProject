@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace KeyboardBiometrics
@@ -79,10 +76,11 @@ namespace KeyboardBiometrics
             if (e.KeyCode != Keys.ShiftKey && e.KeyCode != Keys.Menu && e.KeyCode != Keys.ControlKey && e.KeyCode != Keys.Tab && e.KeyCode != Keys.Back)
             {
                 seekStartTime = DateTime.Now;
+                var totalPressTime = DateTime.Now - pressStartTime;
+                var totalMilisecondsTime = (int)totalPressTime.TotalMilliseconds;
+                pressTimeList.Add(totalMilisecondsTime);
             }
-            var totalPressTime = DateTime.Now - pressStartTime;
-            var totalMilisecondsTime = (int)totalPressTime.TotalMilliseconds;
-            pressTimeList.Add(totalMilisecondsTime);
+            
         }
     }
 
