@@ -31,12 +31,14 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.registerButton = new System.Windows.Forms.Button();
             this.loginButton = new System.Windows.Forms.Button();
+            this.exitbutton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.mainPanel.Controls.Add(this.exitbutton);
             this.mainPanel.Controls.Add(this.registerButton);
             this.mainPanel.Controls.Add(this.loginButton);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -73,6 +75,16 @@
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
+            // exitbutton
+            // 
+            this.exitbutton.Location = new System.Drawing.Point(686, 395);
+            this.exitbutton.Name = "exitbutton";
+            this.exitbutton.Size = new System.Drawing.Size(102, 43);
+            this.exitbutton.TabIndex = 4;
+            this.exitbutton.Text = "Exit";
+            this.exitbutton.UseVisualStyleBackColor = true;
+            this.exitbutton.Click += new System.EventHandler(this.exitbutton_Click);
+            // 
             // KeyboardBiometrics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -93,6 +105,7 @@
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Button registerButton;
         private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Button exitbutton;
     }
 }
 

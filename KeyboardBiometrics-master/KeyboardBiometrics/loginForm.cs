@@ -44,6 +44,7 @@ namespace KeyboardBiometrics
         private void pass1Box_TextChanged(object sender, EventArgs e)
         {
             pass1Box.Clear();
+            methods.ClearData();
         }
 
         private void loginBox_Click(object sender, EventArgs e)
@@ -92,7 +93,7 @@ namespace KeyboardBiometrics
                     Hide();
                 }
             }
-
+            //methods.ClearData();
         }
 
         private bool ValidateBiometricsData(RowData data)
@@ -102,7 +103,7 @@ namespace KeyboardBiometrics
                 return false;
             }
 
-            if (100 * Math.Abs(errorsCountList.Average() - data.averageErrorsCount) / data.averageErrorsCount > 30)
+            if (100 * Math.Abs(errorsCountList.Average() - data.averageErrorsCount) / (data.averageErrorsCount + 1) > 60)
             {
                 return false;
             }

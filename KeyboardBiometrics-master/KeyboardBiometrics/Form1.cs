@@ -23,5 +23,10 @@ namespace KeyboardBiometrics
             register.Show();
             this.Hide();
         }
+
+        private void exitbutton_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
