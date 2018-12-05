@@ -37,10 +37,9 @@
             // 
             // buttonback
             // 
-            this.buttonback.Location = new System.Drawing.Point(8, 8);
-            this.buttonback.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonback.Location = new System.Drawing.Point(12, 12);
             this.buttonback.Name = "buttonback";
-            this.buttonback.Size = new System.Drawing.Size(68, 28);
+            this.buttonback.Size = new System.Drawing.Size(102, 43);
             this.buttonback.TabIndex = 0;
             this.buttonback.Text = "Back";
             this.buttonback.UseVisualStyleBackColor = true;
@@ -49,10 +48,9 @@
             // loginBox
             // 
             this.loginBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.loginBox.Location = new System.Drawing.Point(161, 86);
-            this.loginBox.Margin = new System.Windows.Forms.Padding(2);
+            this.loginBox.Location = new System.Drawing.Point(242, 132);
             this.loginBox.Name = "loginBox";
-            this.loginBox.Size = new System.Drawing.Size(201, 26);
+            this.loginBox.Size = new System.Drawing.Size(300, 35);
             this.loginBox.TabIndex = 3;
             this.loginBox.Text = "Login";
             this.loginBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -61,10 +59,9 @@
             // pass1Box
             // 
             this.pass1Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.pass1Box.Location = new System.Drawing.Point(161, 136);
-            this.pass1Box.Margin = new System.Windows.Forms.Padding(2);
+            this.pass1Box.Location = new System.Drawing.Point(242, 209);
             this.pass1Box.Name = "pass1Box";
-            this.pass1Box.Size = new System.Drawing.Size(201, 26);
+            this.pass1Box.Size = new System.Drawing.Size(300, 35);
             this.pass1Box.TabIndex = 4;
             this.pass1Box.Text = "Password";
             this.pass1Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -76,10 +73,9 @@
             // submitRegisterButton
             // 
             this.submitRegisterButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.submitRegisterButton.Location = new System.Drawing.Point(183, 188);
-            this.submitRegisterButton.Margin = new System.Windows.Forms.Padding(2);
+            this.submitRegisterButton.Location = new System.Drawing.Point(274, 289);
             this.submitRegisterButton.Name = "submitRegisterButton";
-            this.submitRegisterButton.Size = new System.Drawing.Size(157, 42);
+            this.submitRegisterButton.Size = new System.Drawing.Size(236, 65);
             this.submitRegisterButton.TabIndex = 6;
             this.submitRegisterButton.Text = "Login";
             this.submitRegisterButton.UseVisualStyleBackColor = true;
@@ -90,25 +86,24 @@
             this.labelError.AutoSize = true;
             this.labelError.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelError.ForeColor = System.Drawing.Color.Maroon;
-            this.labelError.Location = new System.Drawing.Point(237, 257);
+            this.labelError.Location = new System.Drawing.Point(184, 389);
+            this.labelError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelError.Name = "labelError";
-            this.labelError.Size = new System.Drawing.Size(18, 26);
+            this.labelError.Size = new System.Drawing.Size(0, 37);
             this.labelError.TabIndex = 7;
-            this.labelError.Text = " ";
             this.labelError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(533, 292);
+            this.ClientSize = new System.Drawing.Size(800, 449);
             this.Controls.Add(this.labelError);
             this.Controls.Add(this.submitRegisterButton);
             this.Controls.Add(this.pass1Box);
             this.Controls.Add(this.loginBox);
             this.Controls.Add(this.buttonback);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LoginForm";
             this.Text = "Login";
             this.ResumeLayout(false);

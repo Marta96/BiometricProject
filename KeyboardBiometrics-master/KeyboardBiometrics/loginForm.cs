@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,14 +13,19 @@ namespace KeyboardBiometrics
         List<int> pressTimeList = new List<int>();
         List<int> seekTimeList = new List<int>();
         List<int> errorsCountList = new List<int>();
-        string login;
-        string password;
         Methods methods;
 
-        List<double> totalTime = new List<double>();
-        List<double> HoldTime = new List<double>();
-        List<double> seekTime = new List<double>();
-        List<double> errorCount = new List<double>();
+        SqlCommand cmd;
+        SqlConnection con;
+        SqlDataReader reader;
+
+        struct RowData
+        {
+           public double averageTotalTime;
+           public double averageSeekTime;
+           public double averagePressTime;
+           public double averageErrorsCount;
+        }
 
         public LoginForm()
         {
@@ -45,54 +51,75 @@ namespace KeyboardBiometrics
             loginBox.Clear();
         }
 
-        private void getFromDatabase()
+        private RowData getFromDatabase(string login, string password)
         {
-            // tu przypisac wyniki z bazy danych
-            //totalTime.Add(2545); // total time -300
-            //totalTime.Add(3245); // total time +400
-            //HoldTime.Add(59);  // hold time -10/15
-            //HoldTime.Add(79);  // hold time +10/15
-            //seekTime.Add(97);  // seek time -10/15
-            //seekTime.Add(122);  // seek time +15
-            //errorCount.Add(0); //error count -2
-            //errorCount.Add(2); //error count +2
-            //login = "Marta";   //login
-            //password = "MartaPiotrowska";   //password
+            RowData rowData = new RowData();
+            con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Bartosz\Source\Repos\BiometricProject2\KeyboardBiometrics-master\KeyboardBiometrics\KeyboardDatabase.mdf;Integrated Security=True");
+            con.Open();
+            cmd = new SqlCommand("SELECT total_time, seek_time, press_time, errors_count FROM KeyboardData WHERE nickname=@nickname AND password=@password", con);
+            cmd.Parameters.AddWithValue("@nickname", login);
+            cmd.Parameters.AddWithValue("@password", password);
+
+            reader = cmd.ExecuteReader();
+
+            while(reader.Read())
+            {
+                rowData.averageTotalTime = Convert.ToDouble(reader["total_time"]);
+                rowData.averageSeekTime = Convert.ToDouble(reader["seek_time"]);
+                rowData.averagePressTime = Convert.ToDouble(reader["press_time"]);
+                rowData.averageErrorsCount = Convert.ToDouble(reader["errors_count"]);
+
+            }
+
+            return rowData;
         }
 
         private void submitLoginButton_Click(object sender, EventArgs e)
         {
-            // tu porownanie czasow/ hasla/loginu z bazy z tymi z pola login
+            labelError.Text = "";
 
-            var averageTotalTime = totalTimeList.Average();
-            var averagePressTime = pressTimeList.Average();
-            var averageSeekTime = seekTimeList.Average();
-            var averageErrorsCount = errorsCountList.Average();
+            RowData data = new RowData();
 
-            getFromDatabase();
-
-            if (loginBox.Text.Equals(login) && pass1Box.Text.Equals(password)) {
-                if (averageTotalTime >= totalTime.First() && averageTotalTime <= totalTime.Last()) {
-                    if (averagePressTime >= HoldTime.First() && averagePressTime <= HoldTime.Last())
-                    {
-                        if (averageSeekTime >= seekTime.First() && averageSeekTime <= seekTime.Last())
-                        {
-                            if (averageErrorsCount >= errorCount.First() && averageErrorsCount <= errorCount.Last())
-                            {
-                                LoggedWindow logged = new LoggedWindow(login);
-                                logged.Show();
-                                Hide();
-                            }
-                            else labelError.Text = "Failed biometrics validation";
-                        }
-                        else labelError.Text = "Failed biometrics validation";
-                    }
-                    else labelError.Text = "Failed biometrics validation";
+            data =  getFromDatabase(loginBox.Text, pass1Box.Text);
+            if(data.averageTotalTime.Equals(0)) labelError.Text = "Incorrect login or password";
+            else
+            {
+                if (!ValidateBiometricsData(data)) labelError.Text = "Failed biometrics validation";
+                else
+                {
+                    LoggedWindow logged = new LoggedWindow(loginBox.Text);
+                    logged.Show();
+                    Hide();
                 }
-                else labelError.Text = "Failed biometrics validation";
             }
-            else labelError.Text = "Incorrect login or password";
+
         }
+
+        private bool ValidateBiometricsData(RowData data)
+        {
+            if (100 * Math.Abs(totalTimeList.Average() - data.averageTotalTime) / data.averageTotalTime > 30)
+            {
+                return false;
+            }
+
+            if (100 * Math.Abs(errorsCountList.Average() - data.averageErrorsCount) / data.averageErrorsCount > 30)
+            {
+                return false;
+            }
+
+            if (100 * Math.Abs(pressTimeList.Average() - data.averagePressTime) / data.averagePressTime > 30)
+            {
+                return false;
+            }
+
+            if (100 * Math.Abs(seekTimeList.Average() - data.averageSeekTime) / data.averageSeekTime > 30)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private void pass1Box_KeyDown(object sender, KeyEventArgs e)
         {           
             methods.KeyDown(e);

@@ -86,13 +86,9 @@ namespace KeyboardBiometrics
             else
             {
                 var averageTotalTime = totalTimeList.Average();
-                Console.WriteLine(averageTotalTime);
                 var averagePressTime = pressTimeList.Average();
-                Console.WriteLine(averagePressTime);
                 var averageSeekTime = seekTimeList.Average();
-                Console.WriteLine(averageSeekTime);
                 var averageErrorsCount = errorsCountList.Average();
-                Console.WriteLine(averageErrorsCount);
                 AddRowToDataBase(loginBox.Text, pass1Box.Text, averageTotalTime, averagePressTime, averageSeekTime, averageErrorsCount);
                 RegisteredWindow registeredWindow = new RegisteredWindow();
                 Hide();
