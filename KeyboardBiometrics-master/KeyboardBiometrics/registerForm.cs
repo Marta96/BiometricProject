@@ -71,6 +71,7 @@ namespace KeyboardBiometrics
             {
                 methods.ClearData();
                 pass1Box.Text = "Password is too short";
+                pass2Box.Text = "Password is too short";
             }
             else if(pass1Box.Text != pass2Box.Text)
             {

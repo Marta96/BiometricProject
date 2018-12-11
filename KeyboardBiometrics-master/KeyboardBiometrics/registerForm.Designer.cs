@@ -106,6 +106,7 @@
             this.Controls.Add(this.loginBox);
             this.Controls.Add(this.buttonback);
             this.Name = "RegisterForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Register";
             this.ResumeLayout(false);
             this.PerformLayout();

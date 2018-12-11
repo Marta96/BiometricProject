@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.exitbutton = new System.Windows.Forms.Button();
             this.registerButton = new System.Windows.Forms.Button();
             this.loginButton = new System.Windows.Forms.Button();
-            this.exitbutton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,16 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(800, 450);
             this.mainPanel.TabIndex = 0;
+            // 
+            // exitbutton
+            // 
+            this.exitbutton.Location = new System.Drawing.Point(686, 395);
+            this.exitbutton.Name = "exitbutton";
+            this.exitbutton.Size = new System.Drawing.Size(102, 43);
+            this.exitbutton.TabIndex = 4;
+            this.exitbutton.Text = "Exit";
+            this.exitbutton.UseVisualStyleBackColor = true;
+            this.exitbutton.Click += new System.EventHandler(this.exitbutton_Click);
             // 
             // registerButton
             // 
@@ -75,16 +85,6 @@
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
-            // exitbutton
-            // 
-            this.exitbutton.Location = new System.Drawing.Point(686, 395);
-            this.exitbutton.Name = "exitbutton";
-            this.exitbutton.Size = new System.Drawing.Size(102, 43);
-            this.exitbutton.TabIndex = 4;
-            this.exitbutton.Text = "Exit";
-            this.exitbutton.UseVisualStyleBackColor = true;
-            this.exitbutton.Click += new System.EventHandler(this.exitbutton_Click);
-            // 
             // KeyboardBiometrics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -94,6 +94,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "KeyboardBiometrics";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KeyboardsBiometrics";
             this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);

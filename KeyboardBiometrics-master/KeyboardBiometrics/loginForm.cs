@@ -93,7 +93,6 @@ namespace KeyboardBiometrics
                     Hide();
                 }
             }
-            //methods.ClearData();
         }
 
         private bool ValidateBiometricsData(RowData data)

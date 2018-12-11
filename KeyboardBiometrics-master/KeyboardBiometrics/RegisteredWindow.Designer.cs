@@ -34,10 +34,9 @@
             // 
             // buttonback
             // 
-            this.buttonback.Location = new System.Drawing.Point(11, 11);
-            this.buttonback.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonback.Location = new System.Drawing.Point(16, 17);
             this.buttonback.Name = "buttonback";
-            this.buttonback.Size = new System.Drawing.Size(68, 28);
+            this.buttonback.Size = new System.Drawing.Size(102, 43);
             this.buttonback.TabIndex = 1;
             this.buttonback.Text = "Back";
             this.buttonback.UseVisualStyleBackColor = true;
@@ -47,22 +46,25 @@
             // 
             this.labelRegistered.AutoSize = true;
             this.labelRegistered.Font = new System.Drawing.Font("Centaur", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRegistered.Location = new System.Drawing.Point(139, 94);
+            this.labelRegistered.Location = new System.Drawing.Point(208, 145);
+            this.labelRegistered.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRegistered.Name = "labelRegistered";
-            this.labelRegistered.Size = new System.Drawing.Size(245, 106);
+            this.labelRegistered.Size = new System.Drawing.Size(358, 162);
             this.labelRegistered.TabIndex = 2;
             this.labelRegistered.Text = "Success! \r\nUser added!";
             this.labelRegistered.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // RegisteredWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(537, 296);
+            this.ClientSize = new System.Drawing.Size(806, 455);
             this.Controls.Add(this.labelRegistered);
             this.Controls.Add(this.buttonback);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "RegisteredWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegisteredWindow";
             this.ResumeLayout(false);
             this.PerformLayout();
